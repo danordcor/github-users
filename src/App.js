@@ -23,8 +23,8 @@ class App extends React.Component {
     });
   }
 
-  onClick = () => {
-    alert("redirect")
+  onClick = (user) => {
+    alert("redirect for user:"+user)
   }
 
 
@@ -37,7 +37,7 @@ class App extends React.Component {
       <ListGroup horizontal>
         {users && users.map((user) =>
             <ListGroup.Item>
-              <Button variant="primary" onClick={this.onClick}>{user}</Button>{' '}
+              <Button variant="primary" onClick={() => this.onClick(user)}>{user}</Button>{' '}
             </ListGroup.Item>
         )}
       </ListGroup>
