@@ -3,7 +3,7 @@ import { Navbar } from 'react-bootstrap';
 
 function CustomNavbar(props) {
     return (
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" className="justify-content-center">
             <Navbar.Brand href="#home">
                 {props.title}
             </Navbar.Brand>
