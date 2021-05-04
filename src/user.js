@@ -14,8 +14,8 @@ function User(props) {
                                 <Image src="https://avatars.githubusercontent.com/u/12878064?v=4" style={{width:50}} roundedCircle />
                             </Col>
                             <Col xs={10} md={10}>
-                                <bold>Daniel Orozco</bold>
-                                <p>Otro parafo</p>
+                                <b>Daniel Orozco</b>
+                                <p>https://github.com/danordcor</p>
                             </Col>
                         </Row>
                     </Container>

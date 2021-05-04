@@ -16,13 +16,15 @@ class App extends React.Component {
   onChangeValue = event => {
     this.setState({ value: event.target.value });
   };
-
-  onClick = () => {
+  componentWillMount =  () => {
     console.log(this.state);
     axios.get('https://api.github.com/users/danordcor').then(resp => {
       console.log(resp.data);
     });
+  }
 
+  onClick = () => {
+    alert("redirect")
   }
 
 
