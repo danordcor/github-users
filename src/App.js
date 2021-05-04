@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, ListGroup } from 'react-bootstrap';
+import {Button, Col, ListGroup, Row} from 'react-bootstrap';
 import CustomNavbar from './navbar'
 import axios from "axios";
 import {Link} from "react-router-dom";
@@ -35,11 +35,13 @@ class App extends React.Component {
       <h2>Top 5 Github Users</h2>
       <p>Tap the username to see more information</p>
       <ListGroup horizontal>
+        <Row>
         {users && users.map((user) =>
             <ListGroup.Item>
               <Button variant="primary" onClick={() => this.onClick(user)}>{user}</Button>{' '}
             </ListGroup.Item>
         )}
+        </Row>
       </ListGroup>
       <div>
 
