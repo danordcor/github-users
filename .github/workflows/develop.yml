@@ -24,10 +24,14 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Run build
-        run: yarn build
+      - name: set variables
+        run: |
+        echo "SEGUNDO=segundo" >> $GITHUB_ENV
+
+      - name: set old method
+        run: echo $PRIMERO old method
         env:
-          SKIP_PREFLIGHT_CHECK: true
+          PRIMERO: "daniel"
 
       - name: Install jq
         run: sudo apt-get install jq
@@ -38,7 +42,10 @@ jobs:
       - name: Check build
         run: ls -la
 
-      - name: Final
-        run: echo "End of flow"
+      - name: print 1 method
+        run: echo $PRIMERO
+      
+      - name: print 2 method
+        run: echo $SEGUNDO
 
 
