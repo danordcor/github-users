@@ -30,11 +30,10 @@ jobs:
           env-file: .env.devel
 
       - name: set variables
-        run: |
-        echo "SEGUNDO=segundo" >> $GITHUB_ENV
+        run: echo "SEGUNDO=daniel" >> $GITHUB_ENV
 
       - name: set old method
-        run: echo $PRIMERO old method
+        run: echo $PRIMERO  es el primer nombre
         env:
           PRIMERO: "daniel"
 
@@ -48,7 +47,7 @@ jobs:
         run: ls -la
 
       - name: print 1 method
-        run: echo $PRIMERO
+        run: echo $PRIMERO es el primero
       
       - name: print 2 method
         run: echo $SEGUNDO
