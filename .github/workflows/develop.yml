@@ -29,13 +29,11 @@ jobs:
         with:
           env-file: .env.devel
 
-      - name: set variables
-        run: echo "SEGUNDO=daniel" >> $GITHUB_ENV
-
-      - name: set old method
-        run: echo $PRIMERO  es el primer nombre
-        env:
-          PRIMERO: "daniel"
+      - name: Get frontend version
+        run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g" >> $GITHUB_ENV
+      
+      - name: Check version
+        run: echo $VERSION
 
       - name: Install jq
         run: sudo apt-get install jq
