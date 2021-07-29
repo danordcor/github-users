@@ -30,11 +30,9 @@ jobs:
           env-file: .env.devel
           
       - name: Bump version and push tag
-        uses: anothrNick/github-tag-action@1.26.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BUMP: "minor"
-          RELEASE_BRANCHES: ".*"
+        run: |
+          yarn config set version-git-message "ci: version bump to %s"
+          yarn version --minor
 
       - name: Get frontend version
         run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")" >> $GITHUB_ENV
