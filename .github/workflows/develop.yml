@@ -35,15 +35,6 @@ jobs:
       - name: Check version
         run: echo $VERSION
 
-      - name: Install jq
-        run: sudo apt-get install jq
-
-      - name: Get frontend version
-        run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")" >> $GITHUB_ENV
-
-      - name: Check build
-        run: ls -la
-
       - name: print 1 method
         run: echo $PRIMERO es el primero
       
