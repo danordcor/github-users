@@ -30,7 +30,7 @@ jobs:
           env-file: .env.devel
 
       - name: Get frontend version
-        run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g" >> $GITHUB_ENV
+        run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")" >> $GITHUB_ENV
       
       - name: Check version
         run: echo $VERSION
