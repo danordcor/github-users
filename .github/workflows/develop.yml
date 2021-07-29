@@ -28,6 +28,11 @@ jobs:
         uses: c-py/action-dotenv-to-setenv@v2
         with:
           env-file: .env.devel
+          
+      - name:  'Automated Version Bump'
+        uses:  'phips28/gh-action-bump-version@master'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get frontend version
         run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")" >> $GITHUB_ENV
