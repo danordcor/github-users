@@ -32,8 +32,8 @@ jobs:
       - name: Bump version and push tag
         run: |
           yarn config set version-git-message "ci: version bump to %s"
-          git config --global user.name 'Your Name'
-          git config --global user.email 'your-username@users.noreply.github.com'
+          git config --global user.name 'Automated Version Bump'
+          git config --global user.email '${{ env.GITHUB_ACTOR }}@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           yarn version --minor
           git push
