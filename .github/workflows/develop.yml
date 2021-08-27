@@ -24,7 +24,13 @@ jobs:
         id: tag_version
         uses: mathieudutour/github-tag-action@v5.6
         with:
+          tag_prefix: ''
+          default_bump: 'minor'
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: print tag
+        run: echo ${{ steps.tag_version.outputs.new_tag }} es el nuevo tag
+          
       - name: Create a GitHub release
         uses: actions/create-release@v1
         env:
