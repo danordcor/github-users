@@ -28,7 +28,7 @@ jobs:
           default_bump: 'minor'
           github_token: ${{ secrets.GITHUB_TOKEN }}
           
-      - name: print tag
+      - name: print tag local
         run: echo ${{ steps.tag_version.outputs.new_tag }} es el nuevo tag
           
       - name: Create a GitHub release
