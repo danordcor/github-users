@@ -3,7 +3,7 @@ on:
     branches: [main]
   workflow_dispatch:
 
-name: Deploy to Cloudfront distribution Develop
+name: Deploy to Cloudfront MAIN
 
 jobs:
   deploy:
