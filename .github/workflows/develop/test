@@ -1,0 +1,70 @@
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+name: Deploy to Cloudfront distribution Develop
+
+jobs:
+  deploy:
+    name: Deploy Frontend
+    runs-on: ubuntu-latest
+    environment: development
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use nodejs
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14.x'
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          tag_prefix: ''
+          default_bump: 'minor'
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: print tag local
+        run: echo ${{ steps.tag_version.outputs.new_tag }} es el nuevo tag
+          
+      - name: Create a GitHub release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag_version.outputs.new_tag }}
+          release_name: Release ${{ steps.tag_version.outputs.new_tag }}
+          body: ${{ steps.tag_version.outputs.changelog }}
+
+      - name: Install dependencies
+        run: yarn install
+      
+      - name: Multiples
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: .env.devel
+          
+      - name: Bump version and push tag
+        run: |
+          yarn config set version-git-message "ci: version bump to %s"
+          git config --global user.name 'Automated Version Bump'
+          git config --global user.email '${{ env.GITHUB_ACTOR }}@users.noreply.github.com'
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          yarn version --minor
+      - name: Get frontend version
+        run: echo "VERSION=$(cat package.json | jq '.version' | sed "s/\"//g")" >> $GITHUB_ENV
+      
+      - name: Check version
+        run: echo $VERSION
+
+      - name: print 1 method
+        run: echo $PRIMERO es el primero
+      
+      - name: print 2 method
+        run: echo $SEGUNDO
+      
+      - name: print finales
+        run: echo $TEST_NO_NEWLINE
